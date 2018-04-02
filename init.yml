@@ -39,7 +39,7 @@ classes:
 - service.docker.host
 parameters:
   _param:
-    apt_mk_version: 'proposed'
+    apt_mk_version: '2018.3.0'
     aptly_gpg_keypair_id: A8272E04
     aptly_gpg_passphrase: ""
     aptly_server_secure: true
@@ -137,6 +137,17 @@ parameters:
 
   aptly:
     server:
+      repo:
+        mcp_xenial_updates:
+          component: updates
+          distributions:
+            - ubuntu-xenial/${_param:apt_mk_version}
+            - ubuntu-xenial/stable
+        mcp_trusty_updates:
+          component: updates
+          distributions:
+            - ubuntu-trusty/${_param:apt_mk_version}
+            - ubuntu-trusty/stable
       mirror_update:
         enabled: False
       mirror:

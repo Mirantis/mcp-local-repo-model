@@ -402,9 +402,9 @@ parameters:
             name: k8s-dns-sidecar-amd64:${_param:apt_mk_version}
           - registry: ${_param:docker_artifactory_mirror}/mirantis/external
             name: cluster-proportional-autoscaler-amd64:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/kubernetes
+          - registry: mirantis
             name: k8s-netchecker-agent:v1.2.2
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/kubernetes
+          - registry: mirantis
             name: k8s-netchecker-server:v1.2.2
           - registry: ${_param:docker_artifactory_mirror}/mirantis/external
             name: etcd:${_param:apt_mk_version}

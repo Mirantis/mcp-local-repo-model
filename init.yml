@@ -533,7 +533,7 @@ parameters:
         release:
           xenial:
             keyring: /usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-            upstream: http://images.maas.io/ephemeral-v3/daily/
+            upstream: http://mirror.mirantis.com/${_param:apt_mk_version}/maas-ephemeral-v3/
             local_dir: /var/www/html/maas/images/ephemeral-v3/daily
             arch: amd64
             count: 1

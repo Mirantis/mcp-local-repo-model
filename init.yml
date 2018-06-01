@@ -529,11 +529,21 @@ parameters:
   maas:
     mirror:
       enabled: true
+  maas:
+    mirror:
+      enabled: true
       image:
-        release:
+        sections:
+          bootloaders:
+            keyring: /usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+            upstream: http://mirror.mirantis.com/${_param:apt_mk_version}/maas-ephemeral-v3/
+            local_dir: /srv/http/${_param:apt_mk_version}/maas-ephemeral-v3/
+            count: 1
+            # i386 need for pxe
+            filters: ['arch~(i386|amd64)', 'os~(grub*|pxelinux*)']
           xenial:
             keyring: /usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
             upstream: http://mirror.mirantis.com/${_param:apt_mk_version}/maas-ephemeral-v3/
-            local_dir: /var/www/html/maas/images/ephemeral-v3/daily
-            arch: amd64
+            local_dir: /srv/http/${_param:apt_mk_version}/maas-ephemeral-v3/
             count: 1
+            filters: ['release~(xenial)', 'arch~(amd64)', 'subarch~(generic|hwe-16*|ga-16*)']

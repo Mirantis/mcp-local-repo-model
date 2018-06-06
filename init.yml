@@ -23,7 +23,6 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.oc323
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.influxdb
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.glusterfs
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.maas
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
@@ -287,10 +286,6 @@ parameters:
           publisher:
             distributions:
             - ubuntu-xenial/kibana/5.x/stable
-        mirantis_openstack_xenial_maas:
-          publisher:
-            distributions:
-            - ubuntu-xenial/maas/stable
         mirantis_openstack_xenial_salt:
           publisher:
             distributions:

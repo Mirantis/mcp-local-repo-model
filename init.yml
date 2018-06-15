@@ -144,7 +144,6 @@ parameters:
       XRqg8z44wtlroFTrnR+DgqplsellsrM+xGtZb9VrjFLeP89jzhrBWgE=
       =GLje
       -----END PGP PUBLIC KEY BLOCK-----
-
   aptly:
     server:
       repo:
@@ -481,7 +480,6 @@ parameters:
           host:
             name: registry.mcp-offline-lab.local
             port: 5000
-
   linux:
     system:
       file:
@@ -522,9 +520,6 @@ parameters:
           address: 127.0.0.1
           names:
           - apt
-  maas:
-    mirror:
-      enabled: true
   maas:
     mirror:
       enabled: true

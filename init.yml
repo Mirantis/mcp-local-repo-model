@@ -29,7 +29,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.grafana
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.saltstack.salt-2016-3
 - system.debmirror.mirror_mirantis_com.ubuntu.xenial
-- system.debmirror.mirror_mirantis_com.ubuntu.maas
+- system.debmirror.mirror_mirantis_com.maas.xenial
 - system.git.server.single
 - system.docker.client
 - system.docker.swarm.stack.aptly

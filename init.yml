@@ -379,6 +379,8 @@ parameters:
             name: prometheus_relay:${_param:apt_mk_version}
           - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
             name: qa-tools:${_param:apt_mk_version}
+          - registry: ${_param:docker_artifactory_mirror}/mirantis/cvp
+            name: cvp-rally:${_param:apt_mk_version}
   git:
     server:
        directory: /srv/git/
@@ -387,6 +389,14 @@ parameters:
           url: https://github.com/Mirantis/mk-pipelines.git
         - name: pipeline-library
           url: https://github.com/Mirantis/pipeline-library.git
+        - name: cvp-sanity-checks
+          url: https://github.com/Mirantis/cvp-sanity-checks.git
+        - name: cvp-spt
+          url: https://github.com/Mirantis/cvp-spt.git
+        - name: stacklight-pytest
+          url: https://github.com/Mirantis/stacklight-pytest
+        - name: cvp-configuration
+          url: https://github.com/Mirantis/cvp-configuration.git
         - name: rundeck-cis-jobs
           url: https://github.com/Mirantis/rundeck-cis-jobs.git
   nginx:

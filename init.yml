@@ -8,7 +8,6 @@ classes:
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.mitaka
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.oc323
 - system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.openstack.mitaka
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.saltstack.salt-2016-3
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.fluentd
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.cassandra
@@ -27,7 +26,8 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.grafana
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.saltstack.salt-2016-3
+- system.debmirror.mirror_mirantis_com.glusterfs-3.8.xenial
+- system.debmirror.mirror_mirantis_com.saltstack-2017.7.xenial
 - system.debmirror.mirror_mirantis_com.ubuntu.xenial
 - system.debmirror.mirror_mirantis_com.maas.xenial
 - system.git.server.single

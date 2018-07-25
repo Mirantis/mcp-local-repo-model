@@ -299,6 +299,7 @@ parameters:
       options:
         bip: 10.99.0.1/16
         fixed-cidr: 10.99.0.1/17
+        storage-driver: overlay2
     client:
       registry:
         target_registry: apt:5000

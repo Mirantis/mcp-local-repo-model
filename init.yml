@@ -466,17 +466,6 @@ parameters:
           group: root
           mode: 755
           makedirs: true
-      package:
-        cloud-init:
-          version: latest
-        reclass:
-          version: latest
-    network:
-      host:
-        apt:
-          address: 127.0.0.1
-          names:
-          - apt
   maas:
     mirror:
       enabled: true

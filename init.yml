@@ -366,7 +366,7 @@ parameters:
             name: prometheus_relay:${_param:apt_mk_version}
           - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
             name: qa-tools:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cvp/cvp-rally
+          - registry: ${_param:docker_artifactory_mirror}/mirantis/cvp
             name: cvp-rally:${_param:apt_mk_version}
   git:
     server:

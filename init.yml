@@ -1,34 +1,23 @@
 classes:
 - system.aptly.server.docker
 - system.aptly.client.publisher
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.cassandra
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.fluentd
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.salt
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.extra
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.mitaka
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.oc323
-- system.aptly.server.mirror.ubuntu.trusty.mcp.apt_mk.openstack.mitaka
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.fluentd
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.cassandra
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.mitaka
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.ocata
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ocata
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.oc323
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.influxdb
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.fluentd
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.grafana
-- system.debmirror.mirror_mirantis_com.percona.xenial
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.influxdb
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
 - system.debmirror.mirror_mirantis_com.glusterfs-3.8.xenial
-- system.debmirror.mirror_mirantis_com.saltstack-2017.7.xenial
 - system.debmirror.mirror_mirantis_com.maas.xenial
+- system.debmirror.mirror_mirantis_com.percona.xenial
+- system.debmirror.mirror_mirantis_com.saltstack-2017.7.xenial
 - system.debmirror.mirror_mirantis_com.ubuntu.xenial
 - system.git.server.single
 - system.docker.client
@@ -156,87 +145,17 @@ parameters:
             distributions:
               - ubuntu-xenial/${_param:apt_mk_version}
               - ubuntu-xenial/stable
-        mcp_trusty_updates:
-          distribution: ubuntu-trusty
-          component: updates
-          architectures: amd64
-          comment: "Local Trusty updates repository."
-          publisher:
-            component: updates
-            distributions:
-              - ubuntu-trusty/${_param:apt_mk_version}
-              - ubuntu-trusty/stable
       mirror_update:
         enabled: False
       mirror:
-        mcp_opencontrail_trusty_oc323:
-          publisher:
-            distributions:
-            - ubuntu-trusty/stable
-        mcp_opencontrail_xenial_oc323:
-          publisher:
-            distributions:
-            - ubuntu-xenial/stable
-        mirantis_openstack_mitaka_holdback_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/mitaka/holdback/stable
-        mirantis_openstack_mitaka_hotfix_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/mitaka/hotfix/stable
-        mirantis_openstack_mitaka_security_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/mitaka/security/stable
-        mirantis_openstack_mitaka_updates_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/mitaka/updates/stable
-        mirantis_openstack_mitaka_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/mitaka/stable
-        mirantis_openstack_ocata_holdback_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/ocata/holdback/stable
-        mirantis_openstack_ocata_hotfix_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/ocata/hotfix/stable
-        mirantis_openstack_ocata_security_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/ocata/security/stable
-        mirantis_openstack_ocata_updates_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/ocata/updates/stable
-        mirantis_openstack_ocata_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/ocata/stable
         mirantis_openstack_pike_xenial:
           publisher:
             distributions:
             - ubuntu-xenial/openstack/pike/stable
-        mirantis_openstack_trusty_cassandra:
-          publisher:
-            distributions:
-            - ubuntu-trusty/cassandra/stable
         mirantis_openstack_xenial_cassandra:
           publisher:
             distributions:
             - ubuntu-xenial/cassandra/stable
-        mirantis_openstack_trusty_extra:
-          publisher:
-            distributions:
-            - ubuntu-trusty/stable
-        mirantis_openstack_trusty_salt:
-          publisher:
-            distributions:
-            - ubuntu-trusty/stable
         mirantis_openstack_xenial_aptly:
           publisher:
             distributions:
@@ -273,23 +192,11 @@ parameters:
           publisher:
             distributions:
             - ubuntu-xenial/influxdb/stable
-        mirantis_openstack_xenial_kibana_46:
-          publisher:
-            distributions:
-            - ubuntu-xenial/kibana/4.6/stable
         mirantis_openstack_xenial_kibana_5x:
           publisher:
             distributions:
             - ubuntu-xenial/kibana/5.x/stable
         mirantis_openstack_xenial_salt:
-          publisher:
-            distributions:
-            - ubuntu-xenial/stable
-        mk_openstack_xenial_mitaka:
-          publisher:
-            distributions:
-            - ubuntu-trusty/stable
-        mk_openstack_xenial_ocata:
           publisher:
             distributions:
             - ubuntu-xenial/stable

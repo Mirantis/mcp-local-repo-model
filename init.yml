@@ -34,15 +34,15 @@ parameters:
     docker_stack_aptly_public_replicas: 1
     docker_registry_http_secret: 'Thoh0unuaeSeeT9i'
     # Upstream mirrors:
-    #docker_artifactory_mirror: 'docker-prod-local.artifactory.mirantis.com'
+    #mcp_docker_registry: 'docker-prod-local.artifactory.mirantis.com'
     #vcp_images_mirror: 'http://images.mirantis.com'
     vcp_images_mirror: 'https://apt.mcp.mirantis.net/images'
-    docker_artifactory_mirror: 'docker-prod-local.docker.mirantis.net'
+    mcp_docker_registry: 'docker-prod-local.docker.mirantis.net'
     docker_image_aptly:
-      api: ${_param:docker_artifactory_mirror}/mirantis/cicd/aptly-api:${_param:apt_mk_version}
-      base: ${_param:docker_artifactory_mirror}/mirantis/cicd/aptly:${_param:apt_mk_version}
-      public: ${_param:docker_artifactory_mirror}/mirantis/cicd/aptly-public:${_param:apt_mk_version}
-      publisher: ${_param:docker_artifactory_mirror}/mirantis/cicd/aptly-publisher:${_param:apt_mk_version}
+      api: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-api:${_param:apt_mk_version}
+      base: ${_param:mcp_docker_registry}/mirantis/cicd/aptly:${_param:apt_mk_version}
+      public: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-public:${_param:apt_mk_version}
+      publisher: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-publisher:${_param:apt_mk_version}
     aptly_gpg_private_key: |
       -----BEGIN PGP PRIVATE KEY BLOCK-----
       Version: GnuPG v1
@@ -212,70 +212,113 @@ parameters:
       registry:
         target_registry: apt:5000
         image:
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
+            # CI/CD
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
             name: registry:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
             name: compose:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
             name: openldap:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: aptly:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: aptly-public:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: aptly-api:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: aptly-publisher:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: jnlp-slave:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
             name: phpldapadmin:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: aptly:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: aptly-public:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: aptly-api:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: aptly-publisher:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: jnlp-slave:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
             name: jenkins:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
             name: gerrit:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cicd
-            name: mysql:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
-            name: grafana:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
-            name: visualizer:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
-            name: elasticsearch:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
-            name: mongo:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/external
-            name: postgres:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
-            name: heka:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: security-monkey-api:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: security-monkey-scheduler:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: janitor-monkey:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: rundeck:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: devops-portal:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
-            name: pushkin:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+            # stacklight
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: alertmanager:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+          #- registry: ${_param:mcp_docker_registry}/mirantis/external
+          #  target_registry: ${docker:client:registry:target_registry}/mirantis/external
+          #  name: alerta-web:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: pushgateway:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: prometheus:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+          #- registry: ${_param:mcp_docker_registry}/openstack-docker
+          #  target_registry: ${docker:client:registry:target_registry}/openstack-docker
+          #  name: gainsight:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: telegraf:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: remote_storage_adapter:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/openstack-docker
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: prometheus_relay:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/oss
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
+            name: grafana:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
+            name: heka:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
+            name: elasticsearch:${_param:apt_mk_version}
+            # DOP
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
+            name: mongo:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
+            name: postgres:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: security-monkey-api:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: security-monkey-scheduler:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: janitor-monkey:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: rundeck:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: devops-portal:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
+            name: pushkin:${_param:apt_mk_version}
+          # QA\CVP tool-set's
+          - registry: ${_param:mcp_docker_registry}/mirantis/oss
+            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
             name: qa-tools:${_param:apt_mk_version}
-          - registry: ${_param:docker_artifactory_mirror}/mirantis/cvp
+          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
             name: cvp-rally:${_param:apt_mk_version}
+            #
+          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
+            name: mysql:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/external
+            target_registry: ${docker:client:registry:target_registry}/mirantis/external
+            name: visualizer:${_param:apt_mk_version}
   git:
     server:
        directory: /srv/git/

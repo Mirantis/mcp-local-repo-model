@@ -2,7 +2,6 @@ classes:
 - system.aptly.server.docker
 - system.aptly.client.publisher
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.cassandra
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
@@ -14,6 +13,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
+- system.debmirror.mirror_mirantis_com.cassandra
 - system.debmirror.mirror_mirantis_com.glusterfs-3.8.xenial
 - system.debmirror.mirror_mirantis_com.maas.xenial
 - system.debmirror.mirror_mirantis_com.percona.xenial
@@ -152,10 +152,6 @@ parameters:
           publisher:
             distributions:
             - ubuntu-xenial/openstack/pike/stable
-        mirantis_openstack_xenial_cassandra:
-          publisher:
-            distributions:
-            - ubuntu-xenial/cassandra/stable
         mirantis_openstack_xenial_aptly:
           publisher:
             distributions:

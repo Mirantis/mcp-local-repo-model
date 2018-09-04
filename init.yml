@@ -13,7 +13,7 @@ classes:
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
-- system.debmirror.mirror_mirantis_com.cassandra
+- system.debmirror.mirror_mirantis_com.cassandra.xenial
 - system.debmirror.mirror_mirantis_com.glusterfs-3.8.xenial
 - system.debmirror.mirror_mirantis_com.maas.xenial
 - system.debmirror.mirror_mirantis_com.percona.xenial

@@ -308,6 +308,12 @@ parameters:
           - registry: ${_param:mcp_docker_registry}/mirantis/cvp
             target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
             name: cvp-rally:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
+            name: cvp-spt:${_param:apt_mk_version}
+          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
+            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
+            name: cvp-sanity-checks:${_param:apt_mk_version}
             #
           - registry: ${_param:mcp_docker_registry}/mirantis/cicd
             target_registry: ${docker:client:registry:target_registry}/mirantis/cicd

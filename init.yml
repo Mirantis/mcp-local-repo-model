@@ -1,18 +1,16 @@
 classes:
 - system.aptly.server.docker
 - system.aptly.client.publisher
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.ceph
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.docker-legacy
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.elastic
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.extra
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.fluentd
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.grafana
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.influxdb
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.kibana
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.openstack.pike
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
+- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
+- system.debmirror.mirror_mirantis_com.td-agent.xenial
+- system.debmirror.mirror_mirantis_com.elasticsearch-curator-5.xenial
+- system.debmirror.mirror_mirantis_com.elasticsearch-5.x.xenial
+- system.debmirror.mirror_mirantis_com.extra.xenial
+- system.debmirror.mirror_mirantis_com.docker.xenial
+- system.debmirror.mirror_mirantis_com.ceph-luminous.xenial
+- system.debmirror.mirror_mirantis_com.openstack-pike.xenial
+- system.debmirror.mirror_mirantis_com.openstack-queens.xenial
 - system.debmirror.mirror_mirantis_com.cassandra.xenial
 - system.debmirror.mirror_mirantis_com.glusterfs-3.8.xenial
 - system.debmirror.mirror_mirantis_com.maas.xenial
@@ -147,51 +145,10 @@ parameters:
               - ubuntu-xenial/stable
       mirror_update:
         enabled: False
-      mirror:
-        mirantis_openstack_pike_xenial:
-          publisher:
-            distributions:
-            - ubuntu-xenial/openstack/pike/stable
         mirantis_openstack_xenial_aptly:
           publisher:
             distributions:
             - ubuntu-xenial/aptly/stable
-        mirantis_openstack_xenial_ceph:
-          publisher:
-            distributions:
-            - ubuntu-xenial/ceph/stable
-        mirantis_openstack_xenial_docker:
-          publisher:
-            distributions:
-            - ubuntu-xenial/docker/stable
-        mirantis_openstack_xenial_docker_legacy:
-          publisher:
-            distributions:
-              - ubuntu-xenial/docker/stable
-        mirantis_openstack_xenial_elastic_2x:
-          publisher:
-            distributions:
-            - ubuntu-xenial/elastic/2.x/stable
-        mirantis_openstack_xenial_elastic_5x:
-          publisher:
-            distributions:
-            - ubuntu-xenial/elastic/5.x/stable
-        mirantis_openstack_xenial_extra:
-          publisher:
-            distributions:
-            - ubuntu-xenial/stable
-        mirantis_openstack_xenial_grafana:
-          publisher:
-            distributions:
-            - ubuntu-xenial/grafana/stable
-        mirantis_openstack_xenial_influxdb:
-          publisher:
-            distributions:
-            - ubuntu-xenial/influxdb/stable
-        mirantis_openstack_xenial_kibana_5x:
-          publisher:
-            distributions:
-            - ubuntu-xenial/kibana/5.x/stable
         mirantis_openstack_xenial_salt:
           publisher:
             distributions:

@@ -1,4 +1,5 @@
 classes:
+- service.docker.host
 - system.aptly.server.docker
 - system.aptly.client.publisher
 - system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
@@ -20,10 +21,8 @@ classes:
 - system.git.server.single
 - system.docker.client
 - system.docker.swarm.stack.aptly
-- service.docker.host
 - system.docker.swarm.manager
 - system.docker.swarm.master
-- service.docker.host
 parameters:
   _param:
     aptly_gpg_keypair_id: A8272E04
@@ -155,6 +154,9 @@ parameters:
             - ubuntu-xenial/stable
   docker:
     host:
+      pkgs:
+        - docker-ce
+        - python-docker
       insecure_registries:
         - apt:5000
       options:

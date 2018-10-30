@@ -129,6 +129,15 @@ parameters:
             distributions:
               - ubuntu-xenial/${_param:apt_mk_version}
               - ubuntu-xenial/stable
+      mirror:
+        mirantis_openstack_xenial_salt:
+          publisher:
+            distributions:
+            - ubuntu-xenial/stable
+        mirantis_openstack_xenial_aptly:
+          publisher:
+            distributions:
+            - ubuntu-xenial/aptly/stable
       mirror_update:
         enabled: False
         mirantis_openstack_xenial_aptly:

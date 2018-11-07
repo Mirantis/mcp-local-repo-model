@@ -118,6 +118,8 @@ parameters:
       -----END PGP PUBLIC KEY BLOCK-----
   aptly:
     server:
+      mirror_update:
+        enabled: False
       repo:
         mcp_xenial_updates:
           distribution: ubuntu-xenial
@@ -138,16 +140,6 @@ parameters:
           publisher:
             distributions:
             - ubuntu-xenial/aptly/stable
-      mirror_update:
-        enabled: False
-        mirantis_openstack_xenial_aptly:
-          publisher:
-            distributions:
-            - ubuntu-xenial/aptly/stable
-        mirantis_openstack_xenial_salt:
-          publisher:
-            distributions:
-            - ubuntu-xenial/stable
   docker:
     host:
       pkgs:

@@ -214,8 +214,8 @@ parameters:
           - registry: ${_param:mcp_docker_registry}/openstack-docker
             target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: prometheus_relay:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker/grafana
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker/grafana
+          - registry: ${_param:mcp_docker_registry}/openstack-docker
+            target_registry: ${docker:client:registry:target_registry}/openstack-docker
             name: grafana:${_param:apt_mk_version}
           - registry: ${_param:mcp_docker_registry}/openstack-docker
             target_registry: ${docker:client:registry:target_registry}/openstack-docker

@@ -23,7 +23,6 @@ parameters:
     vcp_images_mirror: 'https://apt.mcp.mirantis.net/images'
     mcp_docker_registry: 'docker-prod-local.docker.mirantis.net'
     docker_image_aptly:
-      api: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-api:${_param:apt_mk_version}
       base: ${_param:mcp_docker_registry}/mirantis/cicd/aptly:${_param:apt_mk_version}
       public: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-public:${_param:apt_mk_version}
       publisher: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-publisher:${_param:apt_mk_version}
@@ -174,9 +173,6 @@ parameters:
           - registry: ${_param:mcp_docker_registry}/mirantis/cicd
             target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
             name: aptly-public:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: aptly-api:${_param:apt_mk_version}
           - registry: ${_param:mcp_docker_registry}/mirantis/cicd
             target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
             name: aptly-publisher:${_param:apt_mk_version}

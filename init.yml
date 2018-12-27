@@ -22,6 +22,7 @@ parameters:
     #vcp_images_mirror: 'http://images.mirantis.com'
     vcp_images_mirror: 'https://apt.mcp.mirantis.net/images'
     mcp_docker_registry: 'docker-prod-local.docker.mirantis.net'
+    local_docker_client_registry_target_registry: apt:5000
     docker_image_aptly:
       base: ${_param:mcp_docker_registry}/mirantis/cicd/aptly:${_param:apt_mk_version}
       public: ${_param:mcp_docker_registry}/mirantis/cicd/aptly-public:${_param:apt_mk_version}
@@ -124,21 +125,13 @@ parameters:
           distribution: ubuntu-xenial
           component: updates
           architectures: amd64
+          # Dummy repo
           comment: "Local Xenial updates repository."
           publisher:
             component: updates
             distributions:
               - ubuntu-xenial/${_param:apt_mk_version}
               - ubuntu-xenial/stable
-      mirror:
-        mirantis_openstack_xenial_salt:
-          publisher:
-            distributions:
-            - ubuntu-xenial/stable
-        mirantis_openstack_xenial_aptly:
-          publisher:
-            distributions:
-            - ubuntu-xenial/aptly/stable
   docker:
     host:
       pkgs:
@@ -152,118 +145,9 @@ parameters:
         storage-driver: overlay2
     client:
       registry:
-        target_registry: apt:5000
-        image:
-            # CI/CD
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: registry:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: compose:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: openldap:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: phpldapadmin:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: aptly:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: aptly-public:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: aptly-publisher:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: jnlp-slave:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: jenkins:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: gerrit:${_param:apt_mk_version}
-            # stacklight
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: alertmanager:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: alerta-web:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: pushgateway:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: prometheus:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: gainsight:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: telegraf:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: remote_storage_adapter:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: prometheus_relay:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: grafana:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/openstack-docker
-            target_registry: ${docker:client:registry:target_registry}/openstack-docker
-            name: heka:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: elasticsearch:${_param:apt_mk_version}
-            # DOP
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: mongo:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: postgres:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: security-monkey-api:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: security-monkey-scheduler:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: janitor-monkey:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: rundeck:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: devops-portal:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: pushkin:${_param:apt_mk_version}
-          # QA\CVP tool-set's
-          - registry: ${_param:mcp_docker_registry}/mirantis/oss
-            target_registry: ${docker:client:registry:target_registry}/mirantis/oss
-            name: qa-tools:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
-            name: cvp-rally:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
-            name: cvp-spt:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/cvp
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cvp
-            name: cvp-sanity-checks:${_param:apt_mk_version}
-            #
-          - registry: ${_param:mcp_docker_registry}/mirantis/cicd
-            target_registry: ${docker:client:registry:target_registry}/mirantis/cicd
-            name: mysql:${_param:apt_mk_version}
-          - registry: ${_param:mcp_docker_registry}/mirantis/external
-            target_registry: ${docker:client:registry:target_registry}/mirantis/external
-            name: visualizer:${_param:apt_mk_version}
+        target_registry: ${_param:local_docker_client_registry_target_registry}
+        # List of images now at reclass-system/defaults
+        image: ${_param:local_registry_mirror_image_list}
   git:
     server:
        directory: /srv/git/
@@ -295,7 +179,7 @@ parameters:
             allow:
             - all
           host:
-            name: http.mcp-offline-lab.local
+            name: http.${_param:cluster_domain}
             port: 8078
         aptly_public:
           enabled: true
@@ -307,7 +191,7 @@ parameters:
             protocol: http
             size: 1G
           host:
-            name: aptly.mcp-offline-lab.local
+            name: aptly.${_param:cluster_domain}
             port: 80
         aptly_api:
           enabled: true
@@ -319,7 +203,7 @@ parameters:
             protocol: http
             size: 1G
           host:
-            name: aptly-api.mcp-offline-lab.local
+            name: aptly-api.${_param:cluster_domain}
             port: 8080
         docker_registry:
           enabled: true
@@ -331,7 +215,7 @@ parameters:
             protocol: http
             size: 1G
           host:
-            name: registry.mcp-offline-lab.local
+            name: registry.${_param:cluster_domain}
             port: 5000
   linux:
     system:

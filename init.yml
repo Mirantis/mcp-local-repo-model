@@ -2,8 +2,6 @@ classes:
 - service.docker.host
 - system.aptly.server.docker
 - system.aptly.client.publisher
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.salt
-- system.aptly.server.mirror.ubuntu.xenial.mcp.apt_mk.aptly
 - system.debmirror.mirror_mirantis_com
 - system.git.server.single
 - system.docker.client
@@ -20,7 +18,7 @@ parameters:
     # Upstream mirrors:
     #mcp_docker_registry: 'docker-prod-local.artifactory.mirantis.com'
     #vcp_images_mirror: 'http://images.mirantis.com'
-    vcp_images_mirror: 'https://apt.mcp.mirantis.net/images'
+    vcp_images_mirror: 'http://images.mcp.mirantis.net/'
     mcp_docker_registry: 'docker-prod-local.docker.mirantis.net'
     local_docker_client_registry_target_registry: apt:5000
     docker_image_aptly:

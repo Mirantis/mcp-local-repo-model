@@ -1,8 +1,5 @@
 # simplified version of system.docker.swarm.stack.docker
 parameters:
-  _param:
-    docker_image_registry: docker-prod-local.docker.mirantis.net/mirantis/external/registry:${_param:apt_mk_version}
-    docker_stack_registry_replicas: 1
   docker:
     client:
       stack:
@@ -12,10 +9,10 @@ parameters:
               environment:
                 REGISTRY_HTTP_SECRET: ${_param:docker_registry_http_secret}
               deploy:
-                replicas: ${_param:docker_stack_registry_replicas}
+                replicas: 1
                 restart_policy:
                   condition: any
-              image: ${_param:docker_image_registry}
+              image: docker-prod-local.docker.mirantis.net/mirantis/external/registry:${_param:mcp_version}
               ports:
                 - 15000:5000
               volumes:

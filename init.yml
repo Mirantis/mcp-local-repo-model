@@ -131,7 +131,7 @@ parameters:
         - docker-ce
         - python-docker
       insecure_registries:
-        - apt:5000
+        - ${_param:default_local_mirrror_content:docker_client_registry_target_registry}
       options:
         bip: 10.99.0.1/16
         fixed-cidr: 10.99.0.1/17

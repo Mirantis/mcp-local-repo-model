@@ -18,6 +18,26 @@ parameters:
     # Upstream mirrors:
     #mcp_docker_registry: 'docker-prod-local.artifactory.mirantis.com'
     #vcp_images_mirror: 'http://images.mirantis.com'
+    default_local_mirrror_content:
+      # List of repos, to be placed into offline image, during separate image build process
+      # By default, will be avaible http_server
+      # WARNING: file path and names - must be exactly same as in any other place in reclass-system or model!
+      git_server_repos:
+        - name: mk-pipelines
+          url: https://gerrit.mcp.mirantis.com/mk/mk-pipelines
+        - name: pipeline-library
+          url: https://gerrit.mcp.mirantis.com/mcp-ci/pipeline-library
+        - name: reclass-system
+          url: https://gerrit.mcp.mirantis.com/salt-models/reclass-system
+        - name: cvp-sanity-checks
+          url: https://gerrit.mcp.mirantis.com/mcp/cvp-sanity-checks
+        - name: stacklight-pytest
+          url: https://gerrit.mcp.mirantis.com/mcp/stacklight-pytest
+          # 2 lines below should be replaced by pipeline
+          https_user: %STACKLIGHT_PYTEST_GIT_HTTPS_USER%
+          https_pass: %STACKLIGHT_PYTEST_GIT_HTTPS_PASS%
+        - name: cvp-configuration
+          url: https://gerrit.mcp.mirantis.com/mcp/cvp-configuration
     mcp_static_images_url: 'http://images.mcp.mirantis.net/'
     mcp_docker_registry: 'docker-prod-local.docker.mirantis.net'
     aptly_gpg_private_key: |
